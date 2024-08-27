@@ -2,9 +2,9 @@ import psycopg
 # print(psycopg)
 
 class Usuario:
-    def __init__(self, login, senha):
-        self.login = login
-        self.senha = senha
+  def __init__(self, login, senha):
+      self.login = login
+      self.senha = senha
 
 def existe(usuario):
     #abrir uma conexão com o postgresql
@@ -12,7 +12,8 @@ def existe(usuario):
         host="localhost",
         dbname="20242_fatec_ipi_pbdi_rodrigo",
         user="postgres",
-        password="123456"
+        password="123456",
+        port="5432"
     ) as conexao:
       #por meio da conexão, obter uma abstração do tipo cursor
       with conexao.cursor() as cursor:
@@ -29,3 +30,11 @@ def existe(usuario):
     # if result != None:
     #    return True
     # return False
+
+def main():
+   login = 'admin'
+   senha = 'admin'
+   usuario = Usuario(login, senha)
+   print("Existe" if existe(usuario) else "Não existe")
+
+main()
